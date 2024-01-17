@@ -12,4 +12,5 @@ RUN pip3 install -r requirements.txt
 # Run data_collector.py when the container launches
 CMD ["python3", "data_collector.py"]
 
-#CMD ["python3", "script2.py"]
+# Run data_merger.py to generate merged CSVs
+CMD ["python3", "data_merger.py"]
