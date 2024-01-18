@@ -1,9 +1,6 @@
 import pandas as pd
 import os
-
-CANDLE_DIRECTORY = os.path.join('candles')
-PRICE_DIRECTORY = os.path.join('prices')
-MERGED_DIRECTORY_NAME = 'merged'
+from constants import MERGED_DIRECTORY_NAME, CANDLE_FOLDER_NAME, PRICES_FOLDER_NAME
 
 
 def calculate_return(df):
@@ -31,9 +28,9 @@ def merge_files(file1, file2):
     merged_data.to_csv(output_path, index=False)
 
 
-if __name__ == '__main__':
-    candles = [os.path.join(CANDLE_DIRECTORY, file) for file in os.listdir(CANDLE_DIRECTORY)]
-    prices = [os.path.join(PRICE_DIRECTORY, file) for file in os.listdir(PRICE_DIRECTORY)]
+def start():
+    candles = [os.path.join(CANDLE_FOLDER_NAME, file) for file in sorted(os.listdir(CANDLE_FOLDER_NAME))]
+    prices = [os.path.join(PRICES_FOLDER_NAME, file) for file in sorted(os.listdir(PRICES_FOLDER_NAME))]
     os.makedirs(MERGED_DIRECTORY_NAME, exist_ok=True)
 
     for candle, price in zip(candles, prices):

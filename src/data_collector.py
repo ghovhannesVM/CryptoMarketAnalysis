@@ -1,11 +1,7 @@
 import requests
 import csv
 import os
-
-PRICES_FOLDER_NAME = 'prices'
-PRICES_FILE_NAME = 'price'
-CANDLE_FOLDER_NAME = 'candles'
-CANDLE_FILE_NAME = 'candle'
+from constants import DATA_FOLDER_NAME, CANDLE_FOLDER_NAME, CANDLE_FILE_NAME, PRICES_FOLDER_NAME, PRICES_FILE_NAME
 
 
 def do_request(url):
@@ -44,11 +40,15 @@ def get_candle_data(ticker):
         write_csv(data, ticker, False)
 
 
-if __name__ == '__main__':
+def create_folders():
     # creating folders for csv files
+    os.makedirs(DATA_FOLDER_NAME, exist_ok=True)
     os.makedirs(PRICES_FOLDER_NAME, exist_ok=True)
     os.makedirs(CANDLE_FOLDER_NAME, exist_ok=True)
 
+
+def start():
+    create_folders()
     coins = {'btc': 'bitcoin', 'eth': 'ethereum', 'sol': 'solana', 'xrp': 'ripple', 'ada': 'cardano'}
     for ticker, coin in coins.items():
         get_price_data(ticker, coin)
