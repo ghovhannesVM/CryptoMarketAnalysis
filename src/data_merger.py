@@ -8,11 +8,15 @@ def calculate_return(df):
     return df
 
 
-def validate(df):
+def clean_and_validate(df):
     assert not df.isna().any().any(), 'DataFrame contains NaN values'
 
     is_numeric = pd.to_numeric(df.stack(), errors='coerce').notna().all()
     assert is_numeric
+
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms', utc=True)
+    df = df.rename(columns={'timestamp': 'datetime'})
+    return df
 
 
 def merge_files(file1, file2):
@@ -21,7 +25,7 @@ def merge_files(file1, file2):
     df_candle = calculate_return(df_candle)
 
     merged_data = pd.merge(df_candle, df_price, on='timestamp', how='inner')
-    validate(merged_data)
+    merged_data = clean_and_validate(merged_data)
 
     filename = f'{os.path.basename(file1)[:3]}.csv'
     output_path = os.path.join(MERGED_DIRECTORY_NAME, filename)
