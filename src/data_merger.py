@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from constants import MERGED_DIRECTORY_NAME, CANDLE_FOLDER_NAME, PRICES_FOLDER_NAME
+from common_utils.constants import MERGED_DIRECTORY_NAME, CANDLE_FOLDER_NAME, PRICES_FOLDER_NAME
 
 
 def calculate_return(df):
@@ -26,9 +26,8 @@ def merge_files(file1, file2):
 
     merged_data = pd.merge(df_candle, df_price, on='timestamp', how='inner')
     merged_data = clean_and_validate(merged_data)
-
-    filename = f'{os.path.basename(file1)[:3]}.csv'
-    output_path = os.path.join(MERGED_DIRECTORY_NAME, filename)
+    ticker = os.path.basename(file1).split("_")[0]  # getting ['$ticker', '_candle.csv'] from $ticker_candle.csv
+    output_path = os.path.join(MERGED_DIRECTORY_NAME, f'{ticker}.csv')
     merged_data.to_csv(output_path, index=False)
 
 
