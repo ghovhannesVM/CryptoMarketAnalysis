@@ -1,6 +1,6 @@
 import requests
-import csv
 import os
+from common_utils.file_handler import create_folders, write_csv
 from common_utils.constants import DATA_FOLDER_NAME, CANDLE_FOLDER_NAME, CANDLE_FILE_NAME, PRICES_FOLDER_NAME, PRICES_FILE_NAME, SUPPORTED_CURRENCIES
 
 
@@ -13,12 +13,10 @@ def do_request(url):
         return None
 
 
-def write_csv(data, ticker, is_price):
+def get_filename(ticker, is_price):
     file_name = f"{ticker.lower()}_{PRICES_FILE_NAME if is_price else CANDLE_FILE_NAME}.csv"
     csv_file_path = os.path.join(PRICES_FOLDER_NAME if is_price else CANDLE_FOLDER_NAME, file_name)
-    with open(csv_file_path, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(data)
+    return csv_file_path
 
 
 def get_price_data(days, ticker, coin):
@@ -28,7 +26,8 @@ def get_price_data(days, ticker, coin):
         prices_and_timestamps = data.get('prices')  # Extracting prices from json
         csv_columns = ['timestamp', 'price']
         prices_and_timestamps.insert(0, csv_columns)   # Adding timestamp and price as column names for the CSV file
-        write_csv(prices_and_timestamps, ticker, True)
+        csv_file_path = get_filename(ticker, True)
+        write_csv(prices_and_timestamps, csv_file_path)
 
 
 def get_candle_data(days, ticker):
@@ -37,18 +36,12 @@ def get_candle_data(days, ticker):
     if data is not None:
         csv_columns = ['timestamp', 'open', 'close', 'high', 'low', 'volume']
         data.insert(0, csv_columns)
-        write_csv(data, ticker, False)
-
-
-def create_folders():
-    # creating folders for csv files
-    os.makedirs(DATA_FOLDER_NAME, exist_ok=True)
-    os.makedirs(PRICES_FOLDER_NAME, exist_ok=True)
-    os.makedirs(CANDLE_FOLDER_NAME, exist_ok=True)
+        csv_file_path = get_filename(ticker, False)
+        write_csv(data, csv_file_path)
 
 
 def start(days, tickers):
-    create_folders()
+    create_folders(DATA_FOLDER_NAME, PRICES_FOLDER_NAME, CANDLE_FOLDER_NAME)
     for ticker in tickers:
         get_price_data(days, ticker, SUPPORTED_CURRENCIES[ticker])
         get_candle_data(days, ticker)

@@ -21,7 +21,9 @@ Run the `src/main.py` script with the following parameters:
 
 **SUPPORTED NUMBER OF DAYS:** Maximum 1461 (4 years)
 
-As a result, there will be a `data/` folder containing `candles/`, `prices/`, and `merged/`.
+**SUPPORTED NUMBER OF TICKERS:** Maximum 5
+
+As a result, there will be a 'data/' folder containing CSV files with information on the specified coins.
 
 ```bash
 python3 src/main.py --days <number_of_days> --tickers <ticker1> <ticker2> ...

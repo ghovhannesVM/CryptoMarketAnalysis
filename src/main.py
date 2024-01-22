@@ -15,6 +15,9 @@ if __name__ == '__main__':
     days = args.days
     tickers = args.tickers
 
+    # Validate tickers size
+    command_line_args_handler.validate_tickers_size(tickers)
+
     # Start the data collector
     data_collector.start(days, tickers)
 
