@@ -13,4 +13,4 @@ MAX_DAYS = 1461
 
 # Supported coins
 SUPPORTED_CURRENCIES = {'BTC': 'bitcoin', 'ETH': 'ethereum', 'SOL': 'solana', 'XRP': 'ripple', 'ADA': 'cardano',
-                        'BNB': 'binancecoin', 'DOT': 'polkadot', 'LTC': 'litecoin', 'TRX': 'tron', 'UNI': 'uniswap'}
+                        'DAI': 'dai', 'DOT': 'polkadot', 'LTC': 'litecoin', 'TRX': 'tron', 'UNI': 'uniswap'}

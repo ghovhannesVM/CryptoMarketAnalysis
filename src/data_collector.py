@@ -22,7 +22,7 @@ def write_csv(data, ticker, is_price):
 
 
 def get_price_data(days, ticker, coin):
-    price_api_url = f'https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days={days}&interval=daily&precision=2'
+    price_api_url = f'https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days={days}&interval=daily&precision=4'
     data = do_request(price_api_url)
     if data is not None:
         prices_and_timestamps = data.get('prices')  # Extracting prices from json

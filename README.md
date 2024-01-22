@@ -17,7 +17,7 @@ Run the `src/main.py` script with the following parameters:
 - `--days`: Data up to a certain number of days ago
 - `--tickers`: List of crypto tickers separated by spaces
 
-**SUPPORTED CRYPTO TICKERS:** [BTC, ETH, SOL, XRP, ADA, BNB, DOT, LTC, TRX, UNI]
+**SUPPORTED CRYPTO TICKERS:** [BTC, ETH, SOL, XRP, ADA, DAI, DOT, LTC, TRX, UNI]
 
 **SUPPORTED NUMBER OF DAYS:** Maximum 1461 (4 years)
 
