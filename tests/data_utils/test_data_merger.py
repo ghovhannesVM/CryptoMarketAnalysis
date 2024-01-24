@@ -1,28 +1,27 @@
 import unittest
 import os
+import shutil
 import pandas as pd
 from unittest.mock import patch
 from src.data_utils.data_merger import calculate_return, merge_files, start
-import shutil
+from tests.common_utils.constants import FOLDER_NAME
 
 
 class TestDataMerger(unittest.TestCase):
 
-    __FOLDER_NAME = 'test_data'
-
     def setUp(self):
-        os.makedirs(self.__FOLDER_NAME, exist_ok=True)
+        os.makedirs(FOLDER_NAME, exist_ok=True)
 
     def tearDown(self):
-        for root, dirs, files in os.walk(self.__FOLDER_NAME, topdown=False):
+        for root, dirs, files in os.walk(FOLDER_NAME, topdown=False):
             for file in files:
                 os.remove(os.path.join(root, file))
-            shutil.rmtree(self.__FOLDER_NAME)
+            shutil.rmtree(FOLDER_NAME)
 
     def create_mocked_data(self, filename, columns, data):
         df = pd.DataFrame(data, columns=columns)
-        df.to_csv(os.path.join(self.__FOLDER_NAME, filename), index=False)
-        return os.path.join(self.__FOLDER_NAME, filename)
+        df.to_csv(os.path.join(FOLDER_NAME, filename), index=False)
+        return os.path.join(FOLDER_NAME, filename)
 
     @patch('src.data_utils.data_merger.calculate_return')
     def test_calculate_return(self, mock_calculate_return):
