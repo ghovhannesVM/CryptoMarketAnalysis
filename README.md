@@ -12,7 +12,7 @@ pip3 install -r requirements.txt
 
 ## Usage
 
-Run the `src/main.py` script with the following parameters:
+Run the `main.py` script with the following parameters:
 
 - `--days`: Data up to a certain number of days ago
 - `--tickers`: List of crypto tickers separated by spaces
@@ -26,7 +26,7 @@ Run the `src/main.py` script with the following parameters:
 As a result, there will be a 'data/' folder containing CSV files with information on the specified coins.
 
 ```bash
-python3 src/main.py --days <number_of_days> --tickers <ticker1> <ticker2> ...
+python3 main.py --days <number_of_days> --tickers <ticker1> <ticker2> ...
 ```
 Replace `<number_of_days>` with your desired time frame and `<ticker1>` `<ticker2>` ... with the list of crypto tickers you wish to analyze.
 
