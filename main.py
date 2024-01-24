@@ -1,6 +1,6 @@
-import data_collector
-import data_merger
-from common_utils import command_line_args_handler
+import src.data_utils.data_collector as data_collector
+import src.data_utils.data_merger as data_merger
+from src.common_utils import command_line_args_handler
 
 """
 Main script for data processing.

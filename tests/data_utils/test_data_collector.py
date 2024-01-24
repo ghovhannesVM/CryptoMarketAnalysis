@@ -1,20 +1,23 @@
 import os
 import unittest
 from unittest.mock import patch, MagicMock
+import shutil
 
-from CryptoMarketAnalysis.src.data_collector import do_request
+from src.data_utils.data_collector import do_request
+
 
 class TestDataCollector(unittest.TestCase):
+
+    __FOLDER_NAME = 'test_data'
+
     def setUp(self):
-        self.data_folder = 'test_data'
-        os.makedirs(self.data_folder, exist_ok=True)
+        os.makedirs(self.__FOLDER_NAME, exist_ok=True)
 
     def tearDown(self):
-        for root, dirs, files in os.walk(self.data_folder, topdown=False):
+        for root, dirs, files in os.walk(self.__FOLDER_NAME, topdown=False):
             for file in files:
                 os.remove(os.path.join(root, file))
-            for directory in dirs:
-                os.rmdir(os.path.join(root, directory))
+            shutil.rmtree(self.__FOLDER_NAME)
 
     @patch('requests.get')
     def test_do_request_success(self, mock_requests_get):
@@ -54,5 +57,3 @@ class TestDataCollector(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-

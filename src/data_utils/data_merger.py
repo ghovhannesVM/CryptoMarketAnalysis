@@ -1,7 +1,7 @@
 import pandas as pd
 import os
-from common_utils.file_handler import remove_folders, get_folder_contents
-from common_utils.constants import DATA_FOLDER_NAME, CANDLE_FOLDER_NAME, PRICES_FOLDER_NAME
+from src.common_utils.file_handler import remove_folders, get_folder_contents
+from src.common_utils.constants import DATA_FOLDER_NAME, CANDLE_FOLDER_NAME, PRICES_FOLDER_NAME
 
 
 def calculate_return(df):

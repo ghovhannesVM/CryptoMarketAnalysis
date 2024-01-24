@@ -10,4 +10,4 @@ COPY . /app
 RUN pip3 install -r requirements.txt
 
 # Run main.py when the container launches
-ENTRYPOINT ["python3", "src/main.py"]
+ENTRYPOINT ["python3", "main.py"]

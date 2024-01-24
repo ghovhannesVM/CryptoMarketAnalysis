@@ -1,7 +1,7 @@
 import requests
 import os
-from common_utils.file_handler import create_folders, write_csv
-from common_utils.constants import DATA_FOLDER_NAME, CANDLE_FOLDER_NAME, CANDLE_FILE_NAME, PRICES_FOLDER_NAME, PRICES_FILE_NAME, SUPPORTED_CURRENCIES
+from src.common_utils.file_handler import create_folders, write_csv
+from src.common_utils.constants import DATA_FOLDER_NAME, CANDLE_FOLDER_NAME, CANDLE_FILE_NAME, PRICES_FOLDER_NAME, PRICES_FILE_NAME, SUPPORTED_CURRENCIES
 
 
 def do_request(url):
